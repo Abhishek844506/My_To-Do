@@ -18,7 +18,7 @@ addBtn.addEventListener('click', () => {
     const taskText = input.value.trim();
     if (taskText !== "") {
         createTaskElement(taskText, false);
-        saveToLocalStorage(); // Save after adding
+        saveToLocalStorage();
         input.value = "";
     }
 });
@@ -28,23 +28,36 @@ function createTaskElement(text, isCompleted) {
     const li = document.createElement('li');
     if (isCompleted) li.classList.add('completed');
 
+    // If task is completed, show the 'X' button. If not, show 'Finish' button.
     li.innerHTML = `
         <span class="text-content">${text}</span>
-        ${!isCompleted ? '<button class="finish-btn">Finish</button>' : ''}
+        <div class="action-btns">
+            ${isCompleted 
+                ? '<button class="delete-btn">✖</button>' 
+                : '<button class="finish-btn">Finish</button>'}
+        </div>
     `;
 
-    // Add event listener for the Finish button (if it exists)
-    const finishBtn = li.querySelector('.finish-btn');
-    if (finishBtn) {
-        finishBtn.addEventListener('click', function() {
+    // Handle button clicks
+    const actionContainer = li.querySelector('.action-btns');
+    
+    li.addEventListener('click', (e) => {
+        // FINISH LOGIC
+        if (e.target.classList.contains('finish-btn')) {
             li.classList.add('completed');
-            this.remove(); // Remove button
+            // Swap Finish button for Delete (X) button
+            actionContainer.innerHTML = '<button class="delete-btn">✖</button>';
             todoList.appendChild(li); // Move to bottom
-            saveToLocalStorage(); // Save change
-        });
-    }
+            saveToLocalStorage();
+        }
+        
+        // DELETE LOGIC
+        if (e.target.classList.contains('delete-btn')) {
+            li.remove();
+            saveToLocalStorage();
+        }
+    });
 
-    // Add to the list
     if (isCompleted) {
         todoList.appendChild(li);
     } else {
@@ -55,7 +68,6 @@ function createTaskElement(text, isCompleted) {
 // --- 4. FUNCTION TO SAVE ALL DATA ---
 function saveToLocalStorage() {
     const tasks = [];
-    // We look at every 'li' currently on the screen and save its state
     document.querySelectorAll('li').forEach(li => {
         tasks.push({
             text: li.querySelector('.text-content').innerText,
