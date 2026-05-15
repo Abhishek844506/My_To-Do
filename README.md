@@ -76,7 +76,7 @@ To-Do-List/
 
 ## 📸 Screenshots
 
-_Add screenshots of your project here_
+<img width="960" height="469" alt="{ED558515-69D7-4D90-AC19-A9A43512B3E3}" src="https://github.com/user-attachments/assets/94a2b933-3cb8-4c6c-93a0-2c922735c90d" />
 
 Example:
 - Home Screen
@@ -85,31 +85,6 @@ Example:
 
 ---
 
-## ▶️ How to Run the Project
-
-### Clone the Repository
-
-```bash
-git clone https://github.com/your-username/todo-list.git
-```
-
-### Open Project Folder
-
-```bash
-cd todo-list
-```
-
-### Run the Project
-
-Simply open:
-
-```text
-index.html
-```
-
-in your browser.
-
----
 
 ## 🔮 Future Improvements
 
@@ -124,4 +99,3 @@ in your browser.
 ## 👨‍💻 Author
 
 **Abhishek Kumar Nirankari** 
-<img width="960" height="469" alt="{ED558515-69D7-4D90-AC19-A9A43512B3E3}" src="https://github.com/user-attachments/assets/94a2b933-3cb8-4c6c-93a0-2c922735c90d" />
